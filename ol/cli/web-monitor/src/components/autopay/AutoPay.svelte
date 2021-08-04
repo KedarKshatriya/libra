@@ -9,7 +9,7 @@
   }
 </script>
 
-<div>
+<div class="uk-margin-top">
   <h2 class="uk-text-center uk-text-uppercase uk-text-muted uk-text-light uk-margin-medium-bottom">
     Autopay Instructions
   </h2>

@@ -1,8 +1,6 @@
 <script lang="ts">
-  import ValidatorModal from "./ValidatorModal.svelte";
+  import { Link } from "svelte-navigator";
   export let data;
-
-  const modal_id = "vals-tab-val-modal";
 
   interface ValInfo {
     account_address: string;
@@ -46,13 +44,7 @@
   }
 </script>
 
-<style>
-  .owner {
-    background: #E6E6E6;
-  }
-</style>
-
-<main uk-height-viewport="expand: true">
+<div uk-height-viewport="expand: true">
   <h2 class="uk-text-center uk-text-uppercase uk-text-muted uk-text-light uk-margin-medium-bottom">
     <span>{set.length} Validators</span>
   </h2>
@@ -88,12 +80,11 @@
             <td class="uk-text-right">{val.vote_count_in_epoch}</td>
             <td class="uk-text-right">{val.prop_count_in_epoch}</td>
             <td>
-              <span uk-icon="icon: info" uk-toggle="target: #{modal_id}"></span>
+              <Link to="validator-info/{val.account_address}" ><span class="info-icon" uk-icon="icon: info" /> </Link>
             </td>
           </tr>
         {/each}
       </tbody>
     </table>
   </div>
-  <ValidatorModal validator={selectedVal} id={modal_id}></ValidatorModal>
-</main>
+</div>

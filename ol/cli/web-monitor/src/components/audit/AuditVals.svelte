@@ -1,9 +1,7 @@
 <script>
-    import ValidatorModal from "../validators/ValidatorModal.svelte";
+    import { Link } from "svelte-navigator";
     import AuditSummary from "./AuditSummary.svelte";
     export let data;
-
-    const modal_id = "audit-tab-val-modal";
 
     let audit_set = [];
     let selected_val = null;
@@ -71,7 +69,7 @@
                                 {/if}
                             </td>
                             <td class="uk-text-center">
-                                <span uk-icon="icon: info" uk-toggle="target: #{modal_id}"></span>
+                                <Link to="validator-info/{val.address}" ><span class="info-icon" uk-icon="icon: info" /> </Link>
                             </td>
                         </tr>
                     {/each}                
@@ -81,5 +79,4 @@
     {:else}
         loading...
     {/if}
-    <ValidatorModal validator={selected_val} id={modal_id}></ValidatorModal>
 </div>
