@@ -36,13 +36,13 @@ pub async fn start_server(mut node: Node, run_checks: bool) {
     // TODO: re-assigning node_home because warp moves it.
     let node_home = cfg.clone().workspace.node_home.clone();
 
-    let account_template = warp::path("account.json").and(warp::get().map(move || {
+    let account_template = warp::path("account").and(warp::get().map(move || {
         let account_path = node_home.join("account.json");
         fs::read_to_string(account_path).unwrap()
     }));
 
     let node_home = cfg.clone().workspace.node_home.clone();
-    let epoch_route = warp::path("epoch.json").and(warp::get().map(move || {
+    let epoch_route = warp::path("epoch").and(warp::get().map(move || {
         // let node_home = node_home_two.clone();
         let vitals = Vitals::read_json(&node_home).chain_view.unwrap();
         let json = json!({
@@ -51,6 +51,18 @@ pub async fn start_server(mut node: Node, run_checks: bool) {
         });
         json.to_string()
     }));
+
+    
+    let node_home = cfg.clone().workspace.node_home.clone();
+    let validator_route = warp::path("validator-info").and(warp::get().map(move || {
+        // let node_home = node_home_two.clone();
+        let vitals = Vitals::read_json(&node_home).chain_view.unwrap();
+        let json = json!({
+          "validator_view": vitals.validator_view
+        });
+        json.to_string()
+    }));
+    
 
     let node_home = cfg.clone().workspace.node_home.clone();
     let web_files = if *IS_PROD {
@@ -69,6 +81,7 @@ pub async fn start_server(mut node: Node, run_checks: bool) {
         landing
             .or(account_template)
             .or(vitals_route)
+            .or(validator_route)
             .or(epoch_route),
     )
     .run(([0, 0, 0, 0], 3030))

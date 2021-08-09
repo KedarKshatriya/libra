@@ -2,19 +2,19 @@
     import AutoPay from "../autopay/AutoPay.svelte";
     import "../layout/Style.svelte";
     import { useNavigate } from "svelte-navigator";
-    import { chainInfo } from "../../store";
+    import { validatorInfo } from "../../store";
     
     const navigate = useNavigate();
     export let address;
     let validator;
     let data;
     
-    chainInfo.subscribe((info_str) => {
+    validatorInfo.subscribe((info_str) => {
         data = JSON.parse(info_str);
     });
 
-    $: if (data.chain_view && data.chain_view.validator_view) {
-    validator = data.chain_view.validator_view.find(x => x.account_address === address)
+    $: if (data.validator_view) {
+    validator = data.validator_view.find(x => x.account_address === address)
     }
     
     function get_operator_account(validator) {

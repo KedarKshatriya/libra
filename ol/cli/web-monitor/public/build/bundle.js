@@ -23386,8 +23386,13 @@ var app = (function () {
     const chainInfo = writable('Chain');
     chainInfo.set("{}");
     let uri = "http://" + location.host + "/vitals";
+    let ure = "http://" + location.host + "/validator";
     let sse = new EventSource(uri);
+    let sse2 = new EventSource(ure);
     sse.onmessage = function (msg) {
+        chainInfo.update(existing => msg.data);
+    };
+    sse2.onmessage = function (msg) {
         chainInfo.update(existing => msg.data);
     };
 
