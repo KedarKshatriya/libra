@@ -23385,10 +23385,12 @@ var app = (function () {
 
     const chainInfo = writable('Chain');
     chainInfo.set("{}");
+    const validatorInfo = chainInfo;
+    validatorInfo.set("{}");
     let uri = "http://" + location.host + "/vitals";
-    let ure = "http://" + location.host + "/validator";
+    let uri2 = "http://" + location.host + "/validator-info";
     let sse = new EventSource(uri);
-    let sse2 = new EventSource(ure);
+    let sse2 = new EventSource(uri2);
     sse.onmessage = function (msg) {
         chainInfo.update(existing => msg.data);
     };
@@ -28373,41 +28375,41 @@ var app = (function () {
     		h: function hydrate() {
     			attr_dev(i$, "class", "uk-text-left");
     			attr_dev(i$, "uk-icon", "icon: arrow-left; ratio: 1.5");
-    			add_location(i$, file$$1, 29, 8, 988);
+    			add_location(i$, file$$1, 29, 8, 955);
     			attr_dev(h2$, "class", "uk-text-center uk-text-uppercase uk-text-muted uk-text-light uk-margin-medium-bottom");
-    			add_location(h2$, file$$1, 30, 8, 1092);
-    			add_location(th0$, file$$1, 35, 16, 1302);
-    			add_location(th1$, file$$1, 36, 16, 1328);
-    			add_location(tr0$, file$$1, 34, 12, 1281);
-    			add_location(thead$, file$$1, 33, 8, 1261);
+    			add_location(h2$, file$$1, 30, 8, 1059);
+    			add_location(th0$, file$$1, 35, 16, 1269);
+    			add_location(th1$, file$$1, 36, 16, 1295);
+    			add_location(tr0$, file$$1, 34, 12, 1248);
+    			add_location(thead$, file$$1, 33, 8, 1228);
     			attr_dev(td0$, "class", "uk-table-expand");
-    			add_location(td0$, file$$1, 41, 16, 1422);
-    			add_location(td1$, file$$1, 42, 16, 1487);
-    			add_location(tr1$, file$$1, 40, 12, 1401);
-    			add_location(td2$, file$$1, 45, 16, 1575);
+    			add_location(td0$, file$$1, 41, 16, 1389);
+    			add_location(td1$, file$$1, 42, 16, 1454);
+    			add_location(tr1$, file$$1, 40, 12, 1368);
+    			add_location(td2$, file$$1, 45, 16, 1542);
     			attr_dev(td3$, "class", "uk-text-break");
-    			add_location(td3$, file$$1, 46, 16, 1625);
-    			add_location(tr2$, file$$1, 44, 12, 1554);
-    			add_location(td4$, file$$1, 49, 16, 1732);
-    			add_location(td5$, file$$1, 50, 16, 1783);
-    			add_location(tr3$, file$$1, 48, 12, 1711);
-    			add_location(td6$, file$$1, 53, 16, 1868);
-    			add_location(td7$, file$$1, 54, 16, 1922);
-    			add_location(tr4$, file$$1, 52, 12, 1847);
-    			add_location(td8$, file$$1, 57, 16, 2023);
-    			add_location(td9$, file$$1, 58, 16, 2065);
-    			add_location(tr5$, file$$1, 56, 12, 2002);
-    			add_location(td10$, file$$1, 61, 16, 2159);
-    			add_location(td11$, file$$1, 62, 16, 2214);
-    			add_location(tr6$, file$$1, 60, 12, 2138);
-    			add_location(td12$, file$$1, 65, 16, 2308);
-    			add_location(td13$, file$$1, 66, 16, 2352);
-    			add_location(tr7$, file$$1, 64, 12, 2287);
-    			add_location(tbody$, file$$1, 39, 8, 1381);
+    			add_location(td3$, file$$1, 46, 16, 1592);
+    			add_location(tr2$, file$$1, 44, 12, 1521);
+    			add_location(td4$, file$$1, 49, 16, 1699);
+    			add_location(td5$, file$$1, 50, 16, 1750);
+    			add_location(tr3$, file$$1, 48, 12, 1678);
+    			add_location(td6$, file$$1, 53, 16, 1835);
+    			add_location(td7$, file$$1, 54, 16, 1889);
+    			add_location(tr4$, file$$1, 52, 12, 1814);
+    			add_location(td8$, file$$1, 57, 16, 1990);
+    			add_location(td9$, file$$1, 58, 16, 2032);
+    			add_location(tr5$, file$$1, 56, 12, 1969);
+    			add_location(td10$, file$$1, 61, 16, 2126);
+    			add_location(td11$, file$$1, 62, 16, 2181);
+    			add_location(tr6$, file$$1, 60, 12, 2105);
+    			add_location(td12$, file$$1, 65, 16, 2275);
+    			add_location(td13$, file$$1, 66, 16, 2319);
+    			add_location(tr7$, file$$1, 64, 12, 2254);
+    			add_location(tbody$, file$$1, 39, 8, 1348);
     			attr_dev(table$, "class", "uk-table");
-    			add_location(table$, file$$1, 32, 8, 1228);
+    			add_location(table$, file$$1, 32, 8, 1195);
     			attr_dev(div$, "class", "uk-container uk-margin-top uk-margin-bottom");
-    			add_location(div$, file$$1, 28, 4, 922);
+    			add_location(div$, file$$1, 28, 4, 889);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div$, anchor);
@@ -28614,7 +28616,7 @@ var app = (function () {
     	let validator;
     	let data;
 
-    	chainInfo.subscribe(info_str => {
+    	validatorInfo.subscribe(info_str => {
     		$$invalidate(3, data = JSON.parse(info_str));
     	});
 
@@ -28633,7 +28635,7 @@ var app = (function () {
     	$$self.$capture_state = () => ({
     		AutoPay: AutoPay$,
     		useNavigate,
-    		chainInfo,
+    		validatorInfo,
     		navigate,
     		address,
     		validator,
@@ -28654,8 +28656,8 @@ var app = (function () {
 
     	$$self.$$.update = () => {
     		if ($$self.$$.dirty & /*data, address*/ 12) {
-    			if (data.chain_view && data.chain_view.validator_view) {
-    				$$invalidate(0, validator = data.chain_view.validator_view.find(x => x.account_address === address));
+    			if (data.validator_view) {
+    				$$invalidate(0, validator = data.validator_view.find(x => x.account_address === address));
     			}
     		}
     	};

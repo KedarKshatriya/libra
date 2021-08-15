@@ -8,7 +8,7 @@
 <div>
 <Router url="{url}">
 	<div>
-    <Route path="validator-info/*" >
+    <Route path="validator/*" >
         <Route path=":address" let:params >
             <ValidatorPage address={params.address} />
         </Route> 

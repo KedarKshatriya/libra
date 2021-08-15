@@ -80,7 +80,7 @@
             <td class="uk-text-right">{val.vote_count_in_epoch}</td>
             <td class="uk-text-right">{val.prop_count_in_epoch}</td>
             <td>
-              <Link to="validator-info/{val.account_address}" ><span class="info-icon" uk-icon="icon: info" /> </Link>
+              <Link to="validator/{val.account_address}" ><span class="info-icon" uk-icon="icon: info" /> </Link>
             </td>
           </tr>
         {/each}

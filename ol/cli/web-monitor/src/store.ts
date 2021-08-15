@@ -7,7 +7,7 @@ export const validatorInfo = chainInfo;
 validatorInfo.set("{}");
 
 let uri = "http://" + location.host + "/vitals";
-let uri2 = "http://" + location.host + "/validator-info";
+let uri2 = "http://" + location.host + "/validator";
 let sse = new EventSource(uri);
 let sse2 = new EventSource(uri2);
 

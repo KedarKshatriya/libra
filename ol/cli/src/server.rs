@@ -54,7 +54,7 @@ pub async fn start_server(mut node: Node, run_checks: bool) {
 
     
     let node_home = cfg.clone().workspace.node_home.clone();
-    let validator_route = warp::path("validator-info").and(warp::get().map(move || {
+    let validator_route = warp::path("validator").and(warp::get().map(move || {
         // let node_home = node_home_two.clone();
         let vitals = Vitals::read_json(&node_home).chain_view.unwrap();
         let json = json!({
